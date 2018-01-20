@@ -8,13 +8,14 @@ run installer.sh
 
 -------------------------------------------
 
-To install ros run ..
-For indigo 
+To install ros, run the following.
+
+* For indigo 
 ```
 ./install_ROS_indigo
 ```
 
-For Kinetic 
+* For Kinetic 
 ```
 ./install_ROS_Kinetic
 ```
