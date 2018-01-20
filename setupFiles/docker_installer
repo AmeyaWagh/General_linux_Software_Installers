@@ -1,0 +1,41 @@
+#!/bin/sh
+
+install_docker_ce(){
+	# remove old docker versions
+	sudo apt-get remove docker docker-engine docker.io
+
+	# extra steps for AUFS
+	sudo apt-get update
+	sudo apt-get install \
+    	linux-image-extra-$(uname -r) \
+    	linux-image-extra-virtual
+
+	# setup the repository
+	sudo apt-get update
+	sudo apt-get install \
+    	apt-transport-https \
+    	ca-certificates \
+    	curl \
+    	software-properties-common
+
+	# add docker official GPG key
+	$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	sudo apt-key fingerprint 0EBFCD88
+	
+	# add repository
+	sudo add-apt-repository \
+   	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   	$(lsb_release -cs) \
+   	stable"
+	
+	sudo apt-get update
+	
+	# install docker-ce
+	sudo apt-get install docker-ce
+	read -p "Press Enter to continue"
+}
+
+install_portainer(){
+	sudo docker volume create portainer_data
+	sudo docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+}

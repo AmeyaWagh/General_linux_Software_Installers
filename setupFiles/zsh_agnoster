@@ -1,0 +1,48 @@
+#!/bin/bash
+
+install_terminator(){
+	sudo add-apt-repository ppa:gnome-terminator
+	sudo apt-get update
+	sudo apt-get install terminator
+}
+
+install_zsh(){
+	sudo apt-get install zsh
+}
+
+install_oh_my_zsh(){
+	cd
+	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+}
+
+install_powerline_font(){
+	cd
+	wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+	wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+	if [ ! -d "~/.fonts" ];then
+		mkdir ~/.fonts
+	fi
+	mv PowerlineSymbols.otf ~/.fonts/
+	mkdir -p .config/fontconfig/conf.d #if directory doesn't exists
+	fc-cache -vf ~/.fonts/
+	mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+
+}
+
+install_solarize(){
+	sudo apt-get install dconf-cli
+	git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git ~/.solarized
+	cd ~/.solarized
+	./install.sh
+	echo "eval `dircolors ~/.dir_colors/dircolors`" >> ~/.zshrc
+	echo "change the to 'agnoster' in zshrc"
+	read -p "press Enter to continue"
+}
+
+#install_terminator
+#install_zsh
+#install_oh_my_zsh
+#install_powerline_font
+#install_solarize
+
+
