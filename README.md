@@ -5,3 +5,19 @@ run installer.sh
 ```
 ./installer.sh
 ```
+
+-------------------------------------------
+
+To install ros run ..
+For indigo 
+```
+./install_ROS_indigo
+```
+
+For Kinetic 
+```
+./install_ROS_Kinetic
+```
+-------------------------------------------
+
+

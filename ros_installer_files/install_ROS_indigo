@@ -1,0 +1,82 @@
+#!/bin/sh
+
+FULL_INSTALL=0
+usage="
+-----------------------------------------------
+		ROS Indigo Installer
+-----------------------------------------------
+1. Desktop-Full Install - (Recommended) : ROS, rqt, rviz, robot-generic libraries, 2D/3D simulators and 2D/3D perception
+2. Desktop Install - ROS, rqt, rviz, and robot-generic libraries
+3. ROS-Base: (Bare Bones) ROS package, build, and communication libraries. No GUI tools.
+
+
+0. Exit
+-----------------------------------------------
+created by - Ameya Wagh
+"
+
+ros_desktop_full(){
+	sudo apt-get install ros-indigo-desktop-full
+}
+
+ros_desktop(){
+	sudo apt-get install ros-indigo-desktop
+}
+
+ros_base(){
+	sudo apt-get install ros-indigo-ros-base
+}
+
+rosdep_init(){
+	echo "Initializing rosdep"
+	sudo rosdep init
+	rosdep update
+}
+
+source_ros(){
+	# for bash
+	echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc
+	source ~/.bashrc
+
+	# for zsh
+	echo "source /opt/ros/indigo/setup.zsh" >> ~/.zshrc
+	source ~/.zshrc
+}
+
+rosinstall_py(){
+	sudo apt-get install python-rosinstall
+}
+
+ros_choice(){
+	local choice
+	echo "$usage"
+	read -p "Enter choice [ number ] " choice
+	case $choice in
+		1) ros_desktop_full ;;
+		2) ros_desktop ;;
+		3) ros_base;;
+		0) exit 0;;
+		*) echo -e "Error.. incorrect choice" && sleep 2
+	esac
+}
+
+install_ROS_Indigo(){
+
+	# adding source list 
+	sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+	# setting up key
+	sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+
+	
+	# install ros
+	sudo apt-get update
+	ros_choice
+
+	rosdep_init
+	source_ros
+	rosinstall_py
+
+}
+
+install_ROS_Indigo
