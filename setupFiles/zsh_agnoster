@@ -39,10 +39,10 @@ install_solarize(){
 	read -p "press Enter to continue"
 }
 
-#install_terminator
-#install_zsh
-#install_oh_my_zsh
-#install_powerline_font
+install_terminator
+install_zsh
+install_oh_my_zsh
+install_powerline_font
 #install_solarize
 
 

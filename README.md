@@ -21,4 +21,20 @@ To install ros, run the following.
 ```
 -------------------------------------------
 
+To install zsh and oh_my_zsh with powerline for agnoster.
+
+In setupFiles
+```
+./zsh_agnoster
+```
+-------------------------------------------
+
+Vim users who require pathogen
+
+In setupFiles
+```
+./vim_pathogen_installer
+```
+-------------------------------------------
+
 
