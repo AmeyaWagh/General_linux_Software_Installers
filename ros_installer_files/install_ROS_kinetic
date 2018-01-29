@@ -1,6 +1,6 @@
 #!/bin/sh
 
-FULL_INSTALL=0
+FULL_INSTALL=1
 
 install_ROS_Kinetic(){
 # setup source list
