@@ -37,24 +37,26 @@ install_sublime(){
 	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
 	#install sublime
-	apt-get update
-	apt-get install sublime-text
+	sudo apt-get update
+	sudo apt-get install sublime-text
 	echo "sublime installed"
+	read -p "Press [Enter] key to continue"
 }
 
 
 
 install_terminator(){
-	apt-get install terminator
-	echo "Terminator installed" 
+	sudo apt-get install terminator
+	echo "Terminator installed"
+	read -p "Press [Enter] key to continue" 
 }
 
 
 
 install_oh_my_zsh(){
 	# install zsh
-	apt-get install zsh
-	apt-get install git-core
+	sudo apt-get install zsh
+	sudo apt-get install git-core
 
 	# install oh my zsh
 	wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
@@ -62,12 +64,14 @@ install_oh_my_zsh(){
 	# MAKE ZSH DEFAULT SHELL
 	chsh -s `which zsh`
 	echo "oh my zsh installed"
+	read -p "Press [Enter] key to continue"
 }
 
 
 
 install_gparted(){
 	sudo apt-get install gparted
+	read -p "Press [Enter] key to continue"
 }
 
 install_chrome(){
@@ -80,17 +84,21 @@ install_chrome(){
 	# install google-chrome stable
 	sudo apt-get update 
 	sudo apt-get install google-chrome-stable
+	read -p "Press [Enter] key to continue"
 }
 
 install_vlc(){
-	sudo apt-get install vlc	
+	sudo apt-get install vlc
+	read -p "Press [Enter] key to continue"	
 }
 
 install_htop(){
 	sudo apt-get install htop
+	read -p "Press [Enter] key to continue"
 }
 
 install_slack(){
+	sudo apt-get install libappindicator1
 	echo "Downloading slack"
 	wget https://downloads.slack-edge.com/linux_releases/slack-desktop-3.0.2-amd64.deb
 	echo "installing - $(ls | grep slack)"
@@ -126,7 +134,7 @@ install_virtualenv(){
 	echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.zshrc
 	source ~/.bashrc
 	source ~/.zshrc
-
+	read -p "Press [Enter] key to continue"
 }
 
 install_java(){
@@ -143,6 +151,7 @@ install_java(){
 uninstall_gedit(){
 	d_log "removing gedit"
 	sudo apt-get remove gedit
+	read -p "Press [Enter] key to continue"
 }
 
 
