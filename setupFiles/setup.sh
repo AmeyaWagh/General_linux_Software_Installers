@@ -154,7 +154,26 @@ uninstall_gedit(){
 	read -p "Press [Enter] key to continue"
 }
 
+install_powerline(){
+	sudo pip install powerline-status
+	git clone https://github.com/powerline/fonts.git && cd fonts && sh ./install.sh
+	echo "set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/" >> ~/.vimrc
+	echo "\" Always show statusline" >> ~/.vimrc
+	echo "set laststatus=2" >> ~/.vimrc
+	echo"\" Use 256 colours (Use this setting only if your terminal supports 256 colours)" >> ~/.vimrc
+	echo "set t_Co=256" >> ~/.vimrc
 
+
+	# Set bashrc
+	echo "if [ -f /usr/local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
+		source /usr/local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+	fi" >> ~/.bashrc
+
+	# Set zshrc
+	echo "f [[ -r /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+	source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+fi" >> ~/.zshrc
+}
 #-------------------------------------------------------------------#
 #test_script
 #install_sublime

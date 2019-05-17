@@ -32,6 +32,7 @@ usage="
 13.	Install grub-customizer
 14. 	Install virtual environment
 15.	Install java se9
+16.	Install powerline
 
 0. 	Exit
 -----------------------------------------------
@@ -61,6 +62,7 @@ read_options(){
 		13) install_grub_customizer ;;
 		14) install_virtualenv ;;
 		15) install_java ;;
+		16) install_powerline ;;
 		0) exit 0;;
 		*) echo -e "${RED}Error...${STD}" && sleep 2
 	esac
